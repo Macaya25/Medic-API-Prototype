@@ -1,0 +1,23 @@
+version: '3'
+services:
+  medic-api:
+    container_name: medic-api
+    build:
+      context: app
+      dockerfile: ./docker/Dockerfile
+    image: medics-api
+    env_file:
+      - ./app/docker/.env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+
+  db:
+    image: postgres:latest
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+

@@ -1,0 +1,14 @@
+# API Server
+fastapi
+uvicorn[standard]
+pydantic[email]
+
+# Database
+SQLAlchemy
+dnspython
+
+# Development
+pip-tools
+black
+flake8
+retrying

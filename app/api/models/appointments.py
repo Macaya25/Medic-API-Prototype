@@ -8,3 +8,12 @@ from datetime import datetime
 
 sys.path.append(os.getcwd())
 
+class Appointment(Base):
+    __tablename__ = 'appointments'
+    id = Column(Integer, primary_key=True)
+    date = Column(DateTime(timezone=True))
+    location = Column(String, nullable=False)
+    # Todo
+    #medic = Column(ForeignKey('doctors.id'))
+    
+

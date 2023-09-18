@@ -4,14 +4,14 @@ from starlette.middleware.cors import CORSMiddleware
 from config import settings
 # import logging
 from api.routes.health import healthRouter
-from api.routes.jobs import router as jobs_router
+from api.routes.appointments import router as appointments_router
 
 # /jobs/api/v1
 serviceApiPrefix = ""
 
 app = FastAPI(
-    title="iaps Jobs Endpoint",
-    descriptions="iaps API Jobs -  validate and trigger new jobs",
+    title="Medic API Endpoint",
+    descriptions="Clinic X -  validate and trigger new jobs",
     version="3.0.0",
     openapi_url=f"{serviceApiPrefix}/openapi.json",
     docs_url=f"{serviceApiPrefix}/docs",
@@ -30,7 +30,7 @@ app.add_middleware(
 
 
 app.include_router(healthRouter, tags=["health"])
-app.include_router(jobs_router, tags=["jobs"], prefix=f"{serviceApiPrefix}")
+app.include_router(appointments_router, tags=["appointments"], prefix=f"{serviceApiPrefix}")
 
 if __name__ == "__main__":
     uvicorn.run(

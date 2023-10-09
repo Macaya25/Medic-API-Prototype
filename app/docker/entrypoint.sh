@@ -26,4 +26,5 @@ wait_for_port "Postgres" "$POSTGRES_HOST" "$POSTGRES_PORT"
 
 echo "starting api"
 
-uvicorn main:app --port=$SERVICE_PORT --host=0.0.0.0
+alembic upgrade head
+uvicorn main:app --reload --port=$SERVICE_PORT --host=0.0.0.0

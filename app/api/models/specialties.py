@@ -8,9 +8,7 @@ from datetime import datetime
 
 sys.path.append(os.getcwd())
 
-class Doctor(Base):
-    __tablename__ = 'doctors'
+class Specialty(Base):
+    __tablename__ = 'specialties'
     id = Column(Integer, primary_key=True)
-    genderMale = Column(Boolean, nullable=False)
     name = Column(String, nullable=False)
-    

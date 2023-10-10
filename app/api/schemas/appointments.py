@@ -6,6 +6,6 @@ from datetime import datetime
 
 
 class AppointmentCreateSchema(BaseModel):
-    location: str
     date: datetime = datetime.now()
     doctor_id: int
+    medic_center_id: int

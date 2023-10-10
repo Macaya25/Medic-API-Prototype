@@ -24,6 +24,13 @@ def upgrade():
     )
 
     op.create_table(
+        'medic_centers',
+        sa.Column('id', sa.BigInteger, nullable=False, primary_key=True),
+        sa.Column('name', sa.String(), nullable=False),
+        sa.Column('location', sa.String(), nullable=False),
+    )
+
+    op.create_table(
         'doctors',
         sa.Column('id', sa.BigInteger, nullable=False, primary_key=True),
         sa.Column('name', sa.String(), nullable=False),
@@ -35,7 +42,7 @@ def upgrade():
         'appointments',
         sa.Column('id', sa.BigInteger, nullable=False, primary_key=True),
         sa.Column("date", sa.DateTime(timezone=True)),
-        sa.Column('location', sa.String(), nullable=False),
+        sa.Column('medic_center_id', sa.BigInteger, sa.ForeignKey('medic_centers.id')),
         sa.Column('doctor_id', sa.BigInteger, sa.ForeignKey('doctors.id')),
     )
     

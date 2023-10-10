@@ -36,7 +36,7 @@ async def get_appointments(database: Session = Depends(db)):
 @router.post('/appointment')
 async def create_appointment(app_data: AppointmentCreateSchema, database: Session = Depends(db)):
 
-    app = Appointment(date=app_data.date, location=app_data.location, doctor_id=app_data.doctor_id)
+    app = Appointment(date=app_data.date, medic_center_id=app_data.medic_center_id, doctor_id=app_data.doctor_id)
     
     database.add(app)
     database.commit()

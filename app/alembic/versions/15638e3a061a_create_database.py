@@ -27,6 +27,7 @@ def upgrade():
         'doctors',
         sa.Column('id', sa.BigInteger, nullable=False, primary_key=True),
         sa.Column('name', sa.String(), nullable=False),
+        sa.Column('genderMale', sa.Boolean, nullable=False),
         sa.Column('specialty_id', sa.BigInteger, sa.ForeignKey('specialties.id')),
     )
 
@@ -43,3 +44,4 @@ def upgrade():
 def downgrade():
     op.drop_table('appointments')
     op.drop_table('doctors')
+    op.drop_table('specialties')

@@ -13,4 +13,4 @@ class Doctor(Base):
     id = Column(Integer, primary_key=True)
     genderMale = Column(Boolean, nullable=False)
     name = Column(String, nullable=False)
-    
+    specialty_id = Column(ForeignKey('specialties.id'))

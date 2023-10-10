@@ -5,6 +5,8 @@ from config import settings
 # import logging
 from api.routes.health import healthRouter
 from api.routes.appointments import router as appointments_router
+from api.routes.specialties import router as specialties_router
+from api.routes.doctors import router as doctors_router
 
 # /jobs/api/v1
 serviceApiPrefix = ""
@@ -29,8 +31,10 @@ app.add_middleware(
 )
 
 
-app.include_router(healthRouter, tags=["health"])
-app.include_router(appointments_router, tags=["appointments"], prefix=f"{serviceApiPrefix}")
+app.include_router(healthRouter, tags=["Health"])
+app.include_router(appointments_router, tags=["Appointments"], prefix=f"{serviceApiPrefix}")
+app.include_router(specialties_router, tags=["Specialties"], prefix=f"{serviceApiPrefix}")
+app.include_router(doctors_router, tags=["Doctors"], prefix=f"{serviceApiPrefix}")
 
 if __name__ == "__main__":
     uvicorn.run(

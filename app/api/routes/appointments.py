@@ -9,7 +9,7 @@ from ..utils.jobs import job_formatted
 from ..models.appointments import Appointment
 
 from ..auth.main import validate_token, UserSession
-#from ..schemas.jobs import GenericJob
+from ..schemas.appointments import AppointmentCreateSchema
 #from ..schemas.jobs import JobTypeEnum, JobStatus, JobOutput
 from ..database.conf import db
 from typing import Optional
@@ -27,17 +27,16 @@ async def get_appointments(database: Session = Depends(db)):
     appointments = database.query(Appointment).all()
     print("Apps: " ,appointments)
     
-    
-    return {'message': 'No appointments'}
+    if appointments:
+        return {'message': 'Appointments retrieved successfully', 'Appointments': appointments}
+    else:
+        return {'message': 'No appointments'}
 
 
 @router.post('/appointment')
-async def create_appointment(database: Session = Depends(db)):
+async def create_appointment(app_data: AppointmentCreateSchema, database: Session = Depends(db)):
 
-    app = Appointment(date=datetime.now,
-                      location="Somewhere",
-                      #medic=1,
-                      )
+    app = Appointment(date=app_data.date, location=app_data.location, doctor_id=app_data.doctor_id)
     
     database.add(app)
     database.commit()

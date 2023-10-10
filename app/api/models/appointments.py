@@ -13,7 +13,6 @@ class Appointment(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime(timezone=True))
     location = Column(String, nullable=False)
-    # Todo
-    #medic = Column(ForeignKey('doctors.id'))
+    doctor_id = Column(ForeignKey('doctors.id'))
     
 

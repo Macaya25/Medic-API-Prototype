@@ -22,7 +22,7 @@ from datetime import datetime
 
 router = APIRouter()
 
-@router.get('/appointment')
+@router.get('/appointments')
 async def get_appointments(database: Session = Depends(db)):
     appointments = database.query(Appointment).all()
     print("Apps: " ,appointments)
@@ -33,7 +33,7 @@ async def get_appointments(database: Session = Depends(db)):
         return {'message': 'No appointments'}
 
 
-@router.post('/appointment')
+@router.post('/appointments')
 async def create_appointment(app_data: AppointmentCreateSchema, database: Session = Depends(db)):
 
     app = Appointment(date=app_data.date, medic_center_id=app_data.medic_center_id, doctor_id=app_data.doctor_id)

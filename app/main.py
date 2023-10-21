@@ -8,6 +8,7 @@ from api.routes.appointments import router as appointments_router
 from api.routes.specialties import router as specialties_router
 from api.routes.doctors import router as doctors_router
 from api.routes.medic_centers import router as centers_router
+from api.routes.seed import router as seed_router
 
 # /jobs/api/v1
 serviceApiPrefix = ""
@@ -37,6 +38,7 @@ app.include_router(appointments_router, tags=["Appointments"], prefix=f"{service
 app.include_router(specialties_router, tags=["Specialties"], prefix=f"{serviceApiPrefix}")
 app.include_router(doctors_router, tags=["Doctors"], prefix=f"{serviceApiPrefix}")
 app.include_router(centers_router, tags=["Medic Centers"], prefix=f"{serviceApiPrefix}")
+app.include_router(seed_router, tags=["Seed"], prefix=f"{serviceApiPrefix}")
 
 if __name__ == "__main__":
     uvicorn.run(

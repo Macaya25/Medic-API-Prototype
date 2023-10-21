@@ -11,6 +11,6 @@ sys.path.append(os.getcwd())
 class Doctor(Base):
     __tablename__ = 'doctors'
     id = Column(Integer, primary_key=True)
-    genderMale = Column(Boolean, nullable=False)
     name = Column(String, nullable=False)
+    genderMale = Column(Boolean, nullable=False)
     specialty_id = Column(ForeignKey('specialties.id'))

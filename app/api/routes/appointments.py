@@ -47,10 +47,8 @@ async def create_appointment(app_data: AppointmentCreateSchema, database: Sessio
 
     app = Appointment(date=app_data.date, medic_center_id=app_data.medic_center_id, doctor_id=app_data.doctor_id)
     converted_app = ConvertAppointment(database, app)
-    data = json.loads(converted_app.json()) 
-    url = 'https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com'
-    route = '/appointments_index/_doc'
-    response = requests.post(url+route, json=data)
+    data = json.loads(converted_app.json())
+    response = requests.post('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com/appointments_index/_doc', json=data)
     print("Response: ", response)
     
     database.add(app)

@@ -7,7 +7,7 @@ services:
     build:
       context: app
       dockerfile: ./docker/Dockerfile
-    image: medics-api
+    image: medic-api
     env_file:
       - ./app/docker/.env
     ports:

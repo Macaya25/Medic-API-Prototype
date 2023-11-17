@@ -3,6 +3,8 @@ fastapi
 uvicorn[standard]
 pydantic[email]
 httpx
+httpcore
+h11
 
 # Database
 SQLAlchemy

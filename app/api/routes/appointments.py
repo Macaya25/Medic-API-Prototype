@@ -48,6 +48,7 @@ async def create_appointment(app_data: AppointmentCreateSchema, database: Sessio
     app = Appointment(date=app_data.date, medic_center_id=app_data.medic_center_id, doctor_id=app_data.doctor_id)
     converted_app = ConvertAppointment(database, app)
     data = json.loads(converted_app.json())
+    headers = {"Content-type": "application/json"}
 
     # Create a connection to the server
     conn = http.client.HTTPConnection('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com')
@@ -55,7 +56,7 @@ async def create_appointment(app_data: AppointmentCreateSchema, database: Sessio
 
     # response = httpx.post(, data=data)
     # print("Response: ", response)
-    conn.request('POST', endpoint, data)
+    conn.request('POST', endpoint, data, headers)
     response = conn.getresponse()
 
     # Print the response status code and data

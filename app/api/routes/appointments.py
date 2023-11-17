@@ -51,7 +51,7 @@ async def create_appointment(app_data: AppointmentCreateSchema, database: Sessio
     headers = {"Content-type": "application/json"}
 
     # Create a connection to the server
-    conn = http.client.HTTPConnection('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com')
+    conn = http.client.HTTPConnection('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com:9200')
     endpoint = '/appointments_index/_doc'
 
     # response = httpx.post(, data=data)

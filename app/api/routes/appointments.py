@@ -1,7 +1,7 @@
 from email import message
 import logging
 import uuid
-import httpx
+import http.client
 import json
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -48,8 +48,22 @@ async def create_appointment(app_data: AppointmentCreateSchema, database: Sessio
     app = Appointment(date=app_data.date, medic_center_id=app_data.medic_center_id, doctor_id=app_data.doctor_id)
     converted_app = ConvertAppointment(database, app)
     data = json.loads(converted_app.json())
-    response = httpx.post('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com/appointments_index/_doc', data=data)
-    print("Response: ", response)
+
+    # Create a connection to the server
+    conn = http.client.HTTPConnection('https://vpc-iaps-medics-domain-4om4eyngnbu4bbphyscl3hy46y.us-west-2.es.amazonaws.com')
+    endpoint = '/appointments_index/_doc'
+
+    # response = httpx.post(, data=data)
+    # print("Response: ", response)
+    conn.request('POST', endpoint, data)
+    response = conn.getresponse()
+
+    # Print the response status code and data
+    print("Status:", response.status)
+    print("Data:", response.read().decode())
+
+    # Close the connection
+    conn.close()
     
     database.add(app)
     database.commit()

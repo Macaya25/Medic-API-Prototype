@@ -2,10 +2,6 @@
 fastapi
 uvicorn[standard]
 pydantic[email]
-httpcore>=0.14.0,<0.15.0
-h11>=0.9.0,<0.10.0
-httpx>=0.19.0
-
 
 # Database
 SQLAlchemy
